@@ -8,10 +8,10 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 export class AppComponent {
   //BD
 
-  @ViewChild("titulo") titulo: ElementRef
-  @ViewChild("descripcion") descripcion: ElementRef
-  @ViewChild("palabraclave") palabraclave: ElementRef
-  @ViewChild("foto") foto: ElementRef
+  titulo: string
+  descripcion: string
+  palabraclave: string
+  foto: string
 
   recetas: Array<{
     titulo: string,
@@ -31,18 +31,11 @@ export class AppComponent {
 
   //agregar(nombre: string, foto: string) {
   agregar() {
-    const titulo = this.titulo.nativeElement.value
-    const descripcion = this.descripcion.nativeElement.value
-    const palabraclave = this.palabraclave.nativeElement.value
-    const foto = this.foto.nativeElement.value
 
-    if (titulo.trim() != "" && foto.trim() != "") {
+    if (this.titulo.trim() != "" && this.foto.trim() != "") {
 
-      this.recetas.push({ titulo, descripcion, palabraclave, foto })
-      this.titulo.nativeElement.value = ""
-      this.descripcion.nativeElement.value = ""
-      this.palabraclave.nativeElement.value =""
-      this.foto.nativeElement.value=""
+      this.recetas.push({ titulo: this.foto, descripcion: this.descripcion, palabraclave: this.palabraclave, foto: this.foto })
+
 
       localStorage.setItem("recetas", JSON.stringify(this.recetas))
     }
