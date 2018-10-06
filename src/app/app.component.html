@@ -1,0 +1,65 @@
+<h1>ViewChild</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Titulo" #titulo>
+        </div>
+        <div class="form-group">
+          <textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="Descricpion" #descripcion></textarea>
+        </div>
+        <div class="form-group">
+          <input type="text" name="" id="" class="form-control" placeholder="Palabras claves" #palabraclave>
+        </div>
+        <div class="form-group">
+          <div class="float-left">
+            <input type="text" class="form-control" placeholder="Foto" #foto>
+            <!--<input type="file" class="form-control" (change)="cargarFoto($event)">-->
+          </div>
+          <div class="float-right">
+            <img [src]="fotoSelecionada" alt="" *ngIf="fotoSelecionada"> {{fotoSelecionada}}
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-success" (click)="agregar()">Agregar</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-12 col-sm-6" *ngIf="recetas.length>0; else NoHayData">
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Palabra Clave</th>
+            <th>Foto</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let receta of recetas">
+            <td>{{receta.titulo}}</td>
+            <td>
+              {{receta.descripcion}}
+            </td>
+            <td>
+              {{receta.palabraclave}}
+            </td>
+            <td>
+              <img [src]="receta.foto" alt="" class="img-thumbnail" style="max-height: 100px">
+            </td>
+            <td>
+              <button class="btn-danger">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #NoHayData>
+      <div class="col-12 col-sm-6">
+        No hay recetas agregadas
+      </div>
+    </ng-template>
+  </div>
+</div>
