@@ -12,12 +12,17 @@ export class AppComponent {
   descripcion: string
   palabraclave: string
   foto: string
+  rating: number
+  revision: number
+
 
   recetas: Array<{
     titulo: string,
     descripcion: string,
     palabraclave: string,
-    foto: string
+    foto: string,
+    rating: number,
+    revision: number
   }> = []
   fotoFile: File
   fotoSeleccionada: any
@@ -34,7 +39,7 @@ export class AppComponent {
 
     if (this.titulo.trim() != "" && this.foto.trim() != "") {
 
-      this.recetas.push({ titulo: this.foto, descripcion: this.descripcion, palabraclave: this.palabraclave, foto: this.foto })
+      this.recetas.push({ titulo: this.foto, descripcion: this.descripcion, palabraclave: this.palabraclave, foto: this.foto, rating: this.rating, revision:this.revision })
 
 
       localStorage.setItem("recetas", JSON.stringify(this.recetas))
@@ -57,6 +62,11 @@ export class AppComponent {
     lector.readAsDataURL(this.fotoFile)
 
     //console.log(evento.target.files[0])
+  }
+
+  colorRating(): string{
+    if(this.rating>3)
+      return 'blue'
   }
 
 }
